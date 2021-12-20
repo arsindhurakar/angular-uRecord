@@ -35,9 +35,7 @@ import { SharedFormComponent } from './shared/components/form/form.component';
 import { SharedFormService } from './services/shared-form.service';
 import { InputComponent } from './shared/components/input/input.component';
 import { AddRecordComponent } from './components/dashboard/users-record/add-record/add-record.component';
-import { ButtonCancelComponent } from './shared/components/buttons/button-cancel/button-cancel.component';
-import { ButtonSubmitComponent } from './shared/components/buttons/button-submit/button-submit.component';
-import { ButtonOkComponent } from './shared/components/buttons/button-ok/button-ok.component';
+import { ButtonComponent } from './shared/components/button/button.component';
 import { TableComponent } from './shared/components/table/table.component';
 
 @NgModule({
@@ -58,9 +56,7 @@ import { TableComponent } from './shared/components/table/table.component';
     SharedFormComponent,
     InputComponent,
     AddRecordComponent,
-    ButtonSubmitComponent,
-    ButtonCancelComponent,
-    ButtonOkComponent,
+    ButtonComponent,
     TableComponent,
     SearchFilter,
   ],

@@ -11,6 +11,7 @@ import { UserRecord } from 'src/app/interfaces/user-record';
 })
 export class RemoveRecordComponent implements OnInit {
   record: UserRecord;
+  isProcessing: boolean = false;
 
   constructor(
     private _usersRecordService: UsersRecordService,
@@ -20,12 +21,14 @@ export class RemoveRecordComponent implements OnInit {
   ngOnInit(): void {}
 
   onRemove() {
+    this.isProcessing = true;
     this._usersRecordService.removeUserRecord(this.record._id).subscribe(
       (res) => {
         if (res.success === true) {
           this.modalRef.close(this.record._id);
         } else {
           this.modalRef.close();
+          this.isProcessing = false;
         }
       },
       (err) => {

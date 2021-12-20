@@ -1,8 +1,10 @@
 <button
-  class="btn btn-success"
-  type="submit"
+  class="w-100"
+  [class]="class"
+  [type]="type"
   [attr.form]="form"
   [disabled]="isProcessing"
+  (click)="onClick.emit()"
 >
   {{ !isProcessing ? value : "Processing" }}
 </button>

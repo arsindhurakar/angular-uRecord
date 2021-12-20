@@ -47,13 +47,12 @@
 
     <!--Buttons-->
     <div class="text-end d-flex flex-column">
-      <button
-        type="submit"
-        class="btn btn-success text-center"
-        [disabled]="isProcessing"
-      >
-        {{ !isProcessing ? "Register" : "Processing" }}
-      </button>
+      <app-button
+        [type]="'submit'"
+        [class]="'btn btn-success'"
+        [value]="'Register'"
+        [isProcessing]="isProcessing"
+      ></app-button>
       <div class="d-flex justify-content-end align-items-center mt-2">
         <small>Already Registered?</small>
         &nbsp;

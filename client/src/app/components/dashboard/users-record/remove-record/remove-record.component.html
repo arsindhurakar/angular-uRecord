@@ -11,9 +11,17 @@
   <small>Possessed By: {{ record.email }}</small>
 </div>
 <div class="modal-footer">
-  <app-button-cancel
+  <app-button
+    [type]="'button'"
+    [class]="'btn btn-success'"
     [value]="'Cancel'"
     (onClick)="modalRef.close()"
-  ></app-button-cancel>
-  <app-button-ok [value]="'Remove'" (onClick)="onRemove()"></app-button-ok>
+  ></app-button>
+  <app-button
+    [type]="'button'"
+    [class]="'btn btn-danger'"
+    [value]="'Remove'"
+    (onClick)="onRemove()"
+    [isProcessing]="isProcessing"
+  ></app-button>
 </div>

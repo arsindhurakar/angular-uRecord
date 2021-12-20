@@ -19,13 +19,12 @@
     <!--Password-->
 
     <div class="text-end d-flex flex-column">
-      <button
-        type="submit"
-        class="btn btn-success text-center"
-        [disabled]="isProcessing"
-      >
-        {{ !isProcessing ? "Login" : "Processing" }}
-      </button>
+      <app-button
+        [type]="'submit'"
+        [class]="'btn btn-success'"
+        [value]="'Login'"
+        [isProcessing]="isProcessing"
+      ></app-button>
       <div class="d-flex align-items-center justify-content-end mt-2">
         <small>Not Registered?</small>
         &nbsp;

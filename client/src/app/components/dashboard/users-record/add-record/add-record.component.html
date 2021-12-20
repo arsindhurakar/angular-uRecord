@@ -19,14 +19,18 @@
     </form>
   </div>
   <div class="modal-footer">
-    <app-button-cancel
+    <app-button
+      [type]="'button'"
+      [class]="'btn btn-danger'"
       [value]="'Cancel'"
       (onClick)="modalRef.close()"
-    ></app-button-cancel>
-    <app-button-submit
+    ></app-button>
+    <app-button
+      [type]="'submit'"
+      [class]="'btn btn-success'"
       [value]="'Add Record'"
       [form]="'newForm'"
       [isProcessing]="isProcessing"
-    ></app-button-submit>
+    ></app-button>
   </div>
 </div>

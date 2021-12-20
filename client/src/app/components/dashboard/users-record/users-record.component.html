@@ -12,10 +12,12 @@
   <!-- Searchbar-->
 
   <!--New record button-->
-  <app-button-ok
+  <app-button
+    [type]="'button'"
+    [class]="'btn btn-success'"
     [value]="'New Record'"
     (onClick)="onNewRecord()"
-  ></app-button-ok>
+  ></app-button>
   <!--New record button-->
 </div>
 
