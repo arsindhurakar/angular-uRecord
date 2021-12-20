@@ -1,0 +1,31 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">{{ record["name"] }}</h5>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modalRef.close()"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="onSaveChanges()" id="editForm">
+      <app-form
+        [parentGroup]="formEditRecord"
+        [sharedGroup]="sharedGroup"
+        [isReadOnly]="true"
+      ></app-form>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <app-button-cancel
+      [value]="'Cancel'"
+      (onClick)="modalRef.close()"
+    ></app-button-cancel>
+    <app-button-submit
+      [value]="'Save Changes'"
+      [form]="'editForm'"
+      [isProcessing]="isProcessing"
+    ></app-button-submit>
+  </div>
+</div>

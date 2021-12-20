@@ -1,0 +1,41 @@
+<div [formGroup]="parentGroup">
+  <div formGroupName="sharedGroup">
+    <!--Name-->
+    <app-input [label]="'Name'" [control]="name"></app-input>
+    <!--Name-->
+
+    <!--Contact No.-->
+    <app-input
+      [label]="'Contact No'"
+      [control]="contactNo"
+      [type]="'number'"
+    ></app-input>
+    <!--Contact No.-->
+
+    <!--Address-->
+    <div formGroupName="address">
+      <app-input [label]="'Street'" [control]="street"></app-input>
+      <app-input [label]="'City'" [control]="city"></app-input>
+    </div>
+    <!--Address-->
+
+    <!--Email-->
+    <app-input
+      [label]="'Email'"
+      [control]="email"
+      [isReadOnly]="isReadOnly"
+    ></app-input>
+    <!--Email-->
+
+    <!--Subscribe-->
+    <div class="form-check">
+      <input
+        type="checkbox"
+        class="form-check-input"
+        formControlName="isSubscribed"
+      />
+      <label>Subscribe</label>
+    </div>
+    <!--Subscribe-->
+  </div>
+</div>

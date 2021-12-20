@@ -1,0 +1,32 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">New Record</h5>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modalRef.close()"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="onAddRecord()" id="newForm">
+      <app-form
+        [parentGroup]="formAddRecord"
+        [sharedGroup]="sharedGroup"
+      ></app-form>
+
+      <div class="d-flex justify-content-end mt-3"></div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <app-button-cancel
+      [value]="'Cancel'"
+      (onClick)="modalRef.close()"
+    ></app-button-cancel>
+    <app-button-submit
+      [value]="'Add Record'"
+      [form]="'newForm'"
+      [isProcessing]="isProcessing"
+    ></app-button-submit>
+  </div>
+</div>

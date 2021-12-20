@@ -1,0 +1,23 @@
+<div class="form-group mb-2">
+  <label>{{ label }}</label>
+  <input
+    [type]="type"
+    class="form-control"
+    [formControl]="control"
+    [class.is-invalid]="control.touched && control.invalid"
+    [readonly]="isReadOnly"
+  />
+  <div *ngIf="control.touched">
+    <small *ngIf="control.errors?.required" class="text-danger"
+      >{{ label }} is required</small
+    >
+    <small
+      *ngIf="control.errors?.minlength || control.errors?.pattern"
+      class="text-danger"
+      >Not a valid {{ label }}</small
+    >
+    <small *ngIf="control.errors?.invalidValue" class="text-danger">
+      {{ control.errors?.invalidValue.value }} is not a valid name
+    </small>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="d-flex justify-content-between p-3">
+  <!-- Searchbar-->
+  <div>
+    <input
+      type="search"
+      class="form-control"
+      placeholder="Search.."
+      aria-label="Search"
+      [(ngModel)]="searchTerm"
+    />
+  </div>
+  <!-- Searchbar-->
+
+  <!--New record button-->
+  <app-button-ok
+    [value]="'New Record'"
+    (onClick)="onNewRecord()"
+  ></app-button-ok>
+  <!--New record button-->
+</div>
+
+<!--Table-->
+<div class="d-flex justify-content-center">
+  <app-table
+    [headElements]="headElements"
+    [keyElements]="keyElements"
+    [records]="records"
+    [isActions]="true"
+    (onEdit)="onEdit($event)"
+    (onRemove)="onRemove($event)"
+    [searchTerm]="searchTerm"
+    [isProcessing]="isProcessing"
+  ></app-table>
+</div>
+<!--Table-->

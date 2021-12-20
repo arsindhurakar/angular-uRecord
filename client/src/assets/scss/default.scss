@@ -1,0 +1,24 @@
+body {
+  height: 100vh;
+}
+
+//--users-record -> actions--
+i.icon-action {
+  transition: transform 0.2s;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.5);
+  }
+}
+//--users-record -> actions--
+
+//--links--
+a {
+  display: inline-block !important;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+//--links--

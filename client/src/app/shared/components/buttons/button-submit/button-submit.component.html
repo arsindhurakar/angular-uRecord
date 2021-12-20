@@ -1,0 +1,8 @@
+<button
+  class="btn btn-success"
+  type="submit"
+  [attr.form]="form"
+  [disabled]="isProcessing"
+>
+  {{ !isProcessing ? value : "Processing" }}
+</button>

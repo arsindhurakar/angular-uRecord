@@ -1,0 +1,38 @@
+<div class="h-100 d-flex flex-column align-items-center justify-content-center">
+  <!--Message-->
+  <small *ngIf="serverErrorMessage" class="text-danger">{{
+    serverErrorMessage
+  }}</small>
+  <!--Message-->
+
+  <form class="w-25" [formGroup]="loginForm" (ngSubmit)="handleLogin()">
+    <!--Email-->
+    <app-input [label]="'Email'" [control]="email" [type]="'email'"></app-input>
+    <!--Email-->
+
+    <!--Password-->
+    <app-input
+      [label]="'Password'"
+      [control]="password"
+      [type]="'password'"
+    ></app-input>
+    <!--Password-->
+
+    <div class="text-end d-flex flex-column">
+      <button
+        type="submit"
+        class="btn btn-success text-center"
+        [disabled]="isProcessing"
+      >
+        {{ !isProcessing ? "Login" : "Processing" }}
+      </button>
+      <div class="d-flex align-items-center justify-content-end mt-2">
+        <small>Not Registered?</small>
+        &nbsp;
+        <small class="text-success text-register" routerLink="/registration"
+          >REGISTER</small
+        >
+      </div>
+    </div>
+  </form>
+</div>

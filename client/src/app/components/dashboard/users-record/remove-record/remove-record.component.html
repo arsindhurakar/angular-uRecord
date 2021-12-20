@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">Remove Record?</h5>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="modalRef.close()"
+  ></button>
+</div>
+<div class="modal-body">
+  <small>Possessed By: {{ record.email }}</small>
+</div>
+<div class="modal-footer">
+  <app-button-cancel
+    [value]="'Cancel'"
+    (onClick)="modalRef.close()"
+  ></app-button-cancel>
+  <app-button-ok [value]="'Remove'" (onClick)="onRemove()"></app-button-ok>
+</div>

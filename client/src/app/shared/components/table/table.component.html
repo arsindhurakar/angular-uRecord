@@ -1,0 +1,57 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th *ngFor="let element of headElements">
+        {{ element.key }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      mdbTableCol
+      *ngFor="
+        let record of records
+          | searchFilter: searchTerm:['name']
+          | paginate: { itemsPerPage: 5, currentPage: pageCount };
+        index as i
+      "
+    >
+      <td>{{ i + 1 }}</td>
+      <td *ngFor="let element of keyElements">
+        <div *ngIf="element.type !== 'array'; else nestedKeyElements">
+          {{ record[element.key] }}
+        </div>
+        <ng-template #nestedKeyElements>
+          <td
+            *ngFor="let nestedElement of element.nestedKeys; let isLast = last"
+          >
+            {{ record[element.key][nestedElement.key] }}{{ isLast ? "" : ", " }}
+          </td>
+        </ng-template>
+      </td>
+      <td>
+        <i
+          class="fas fa-circle"
+          [style.color]="record.isSubscribed ? '#00b74a' : '#C8C8C8'"
+        ></i>
+      </td>
+      <td *ngIf="isActions">
+        <i
+          class="fas fa-pen text-success me-4 icon-action"
+          (click)="onEdit.emit(record)"
+        ></i>
+        <i
+          class="fas fa-trash text-danger icon-action"
+          (click)="onRemove.emit(record)"
+        ></i>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="d-flex flex-column align-items-center" *ngIf="isProcessing">
+  <span class="spinner-border text-success my-2" role="status"></span>
+  <span>Loading...</span>
+</div>
+<div class="text-end">
+  <pagination-controls (pageChange)="pageCount = $event"></pagination-controls>
+</div>

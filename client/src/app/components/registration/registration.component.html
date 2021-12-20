@@ -1,0 +1,65 @@
+<div class="h-100 d-flex flex-column align-items-center justify-content-center">
+  <!--Message-->
+  <small *ngIf="isSuccess" class="text-success">Registration Successful</small>
+  <small *ngIf="serverErrorMessage" class="text-danger">{{
+    serverErrorMessage
+  }}</small>
+  <!--Message-->
+
+  <form
+    class="w-25"
+    [formGroup]="registrationForm"
+    (ngSubmit)="handleRegistration()"
+  >
+    <!--Name-->
+    <app-input
+      [label]="'Name'"
+      [control]="fullName"
+      [type]="'text'"
+    ></app-input>
+    <!--Name-->
+
+    <!--Email-->
+    <app-input [label]="'Email'" [control]="email" [type]="'email'"></app-input>
+    <!--Email-->
+
+    <!--Password-->
+    <app-input
+      [label]="'Password'"
+      [control]="password"
+      [type]="'password'"
+    ></app-input>
+    <!--Password-->
+
+    <!--Confirm Password-->
+    <app-input
+      [label]="'Confirm Password'"
+      [control]="confirmPassword"
+      [type]="'password'"
+    ></app-input>
+    <small
+      class="text-danger"
+      [class.d-none]="confirmPassword.errors?.required"
+      *ngIf="registrationForm.errors?.mismatch"
+      >Passwords do not match</small
+    >
+    <!--Confirm Password-->
+
+    <!--Buttons-->
+    <div class="text-end d-flex flex-column">
+      <button
+        type="submit"
+        class="btn btn-success text-center"
+        [disabled]="isProcessing"
+      >
+        {{ !isProcessing ? "Register" : "Processing" }}
+      </button>
+      <div class="d-flex justify-content-end align-items-center mt-2">
+        <small>Already Registered?</small>
+        &nbsp;
+        <small class="text-success text-login" routerLink="/login">LOGIN</small>
+      </div>
+    </div>
+    <!--Buttons-->
+  </form>
+</div>
