@@ -1,6 +1,8 @@
 <div class="modal-content">
   <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLabel">{{ record["name"] }}</h5>
+    <h5 class="modal-title" id="exampleModalLabel">
+      Edit Record: {{ record["name"] }}
+    </h5>
     <button
       type="button"
       class="btn-close"
@@ -12,7 +14,7 @@
     <form (ngSubmit)="onSaveChanges()" id="editForm">
       <app-form
         [parentGroup]="formEditRecord"
-        [sharedGroup]="sharedGroup"
+        [sharedGroup]="formEditRecord.get('sharedGroup')"
         [isReadOnly]="true"
       ></app-form>
     </form>
@@ -30,6 +32,7 @@
       [value]="'Save Changes'"
       [form]="'editForm'"
       [isProcessing]="isProcessing"
+      [isInvalid]="formEditRecord.invalid"
     ></app-button>
   </div>
 </div>

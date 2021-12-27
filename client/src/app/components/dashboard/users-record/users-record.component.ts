@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 
-import { UsersRecordService } from 'src/app/services/users-record.service';
+import { UsersRecordService } from '../../../services';
 import { UserRecord } from '../../../interfaces/user-record';
-import { EditRecordComponent } from './edit-record/edit-record.component';
-import { RemoveRecordComponent } from './remove-record/remove-record.component';
-import { AddRecordComponent } from './add-record/add-record.component';
+import {
+  EditRecordComponent,
+  RemoveRecordComponent,
+  AddRecordComponent,
+} from '../../../components';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -18,31 +20,25 @@ export class UsersRecordComponent implements OnInit {
   searchTerm: string;
   isProcessing: boolean = true;
 
-  headElements: object[] = [
-    { key: '#', type: 'number' },
-    { key: 'Name', type: 'string' },
-    { key: 'Email', type: 'string' },
+  elements: object[] = [
+    { head: 'Name', key: 'name', type: 'control' },
+    { head: 'Email', key: 'email', type: 'control' },
     {
-      key: 'Address',
-      type: 'string',
-    },
-    { key: 'Contact No', type: 'number' },
-    { key: 'Subscription', type: 'boolean' },
-    { key: 'Actions', type: 'others' },
-  ];
-
-  keyElements: object[] = [
-    { key: 'name', type: 'string' },
-    { key: 'email', type: 'string' },
-    {
+      head: 'Address',
       key: 'address',
-      type: 'array',
+      type: 'group',
       nestedKeys: [
-        { key: 'street', type: 'string' },
-        { key: 'city', type: 'string' },
+        { key: 'street', type: 'control' },
+        { key: 'city', type: 'control' },
       ],
     },
-    { key: 'contactNo', type: 'number' },
+    {
+      head: 'Contact No',
+      key: 'contactNo',
+      type: 'control',
+    },
+    { head: 'Subscription', type: 'subscription', icon: 'fas fa-circle' },
+    { head: 'Actions', type: 'actions' },
   ];
 
   newModalRef: MdbModalRef<EditRecordComponent>;
@@ -119,8 +115,6 @@ export class UsersRecordComponent implements OnInit {
           isSubscribed,
         };
         this._toastr.success('Updated successfully');
-      } else {
-        this._toastr.error('Nothing was updated');
       }
     });
   }

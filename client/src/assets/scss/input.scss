@@ -1,0 +1,67 @@
+//--input--
+.form-control {
+  border: none;
+  border-radius: 0;
+}
+
+input:focus {
+  box-shadow: none !important;
+}
+
+input[readonly] {
+  cursor: not-allowed;
+}
+//--input--
+
+//--Hide input number arrows/spinner--
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+//--Hide input number arrows/spinner--
+
+//--label--
+label {
+  font-size: 0.9rem;
+}
+//--label--
+
+//--inputField text--
+input {
+  font-size: 0.9rem !important;
+}
+//--inputField text--
+
+//--inputField--
+.input-field {
+  border-bottom: 1px solid var(--secondary-color);
+}
+
+.input-field:focus-within {
+  border-bottom: 2px solid var(--primary-color);
+}
+//--inputField--
+
+//--show password icon--
+i.password-show {
+  color: #808080;
+  font-size: 0.9rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+//--show password icon--
+
+//--error message--
+.msg-error {
+  font-size: 0.8rem;
+}
+//--error message--

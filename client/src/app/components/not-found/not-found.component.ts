@@ -11,7 +11,7 @@ export class NotFoundComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onBack() {
+  onBack(): void {
     this._location.back();
   }
 }

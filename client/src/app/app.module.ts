@@ -7,70 +7,57 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxMaskModule } from 'ngx-mask';
 
 import { AppRoutingModule } from './app-routing.module';
-import { SharedModule } from './shared/modules/shared.module';
+import { AuthGuard, AuthInterceptor } from './auth';
+import { SearchFilter } from './pipes';
+import { MdbModule } from './shared/modules/mdb.module';
 
-//Others
-import { UserService } from './services/user.service';
-import { AuthGuard } from './auth/auth.guard';
-import { AuthInterceptor } from './auth/auth.interceptor';
-import { SearchFilter } from './pipes/search-filter.pipe';
+import * as components from './components';
+import * as sharedComponents from './shared/components';
 
-//Components
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/dashboard/header/header.component';
-import { HomeComponent } from './components/dashboard/home/home.component';
-import { HeroComponent } from './components/dashboard/home/hero/hero.component';
-import { FooterComponent } from './components/dashboard/footer/footer.component';
-import { RegistrationComponent } from './components/registration/registration.component';
-import { LoginComponent } from './components/login/login.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { UsersRecordComponent } from './components/dashboard/users-record/users-record.component';
-import { EditRecordComponent } from './components/dashboard/users-record/edit-record/edit-record.component';
-import { RemoveRecordComponent } from './components/dashboard/users-record/remove-record/remove-record.component';
+import { UserService, SharedFormService } from './services';
 import { PasswordStrengthDirective } from './directives/password-strength.directive';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { SharedFormComponent } from './shared/components/form/form.component';
-import { SharedFormService } from './services/shared-form.service';
-import { InputComponent } from './shared/components/input/input.component';
-import { AddRecordComponent } from './components/dashboard/users-record/add-record/add-record.component';
-import { ButtonComponent } from './shared/components/button/button.component';
-import { TableComponent } from './shared/components/table/table.component';
+import { NumbersOnlyDirective } from './directives/numbers-only.directive';
+import { FormErrorMessagePipe } from './pipes/form-error-message.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent,
-    HomeComponent,
-    HeroComponent,
-    FooterComponent,
-    RegistrationComponent,
-    LoginComponent,
-    DashboardComponent,
-    UsersRecordComponent,
-    EditRecordComponent,
-    RemoveRecordComponent,
+    components.AppComponent,
+    components.HeaderComponent,
+    components.HomeComponent,
+    components.HeroComponent,
+    components.FooterComponent,
+    components.RegistrationComponent,
+    components.LoginComponent,
+    components.DashboardComponent,
+    components.UsersRecordComponent,
+    components.EditRecordComponent,
+    components.RemoveRecordComponent,
+    components.NotFoundComponent,
+    components.AddRecordComponent,
+    sharedComponents.FormComponent,
+    sharedComponents.InputComponent,
+    sharedComponents.ButtonComponent,
+    sharedComponents.TableComponent,
     PasswordStrengthDirective,
-    NotFoundComponent,
-    SharedFormComponent,
-    InputComponent,
-    AddRecordComponent,
-    ButtonComponent,
-    TableComponent,
     SearchFilter,
+    NumbersOnlyDirective,
+    FormErrorMessagePipe,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    SharedModule,
+    MdbModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
     Ng2SearchPipeModule,
     NgxPaginationModule,
+    NgxMaskModule.forRoot(),
   ],
   providers: [
     {
@@ -82,6 +69,6 @@ import { TableComponent } from './shared/components/table/table.component';
     UserService,
     SharedFormService,
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [components.AppComponent],
 })
 export class AppModule {}

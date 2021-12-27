@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 
-import { UsersRecordService } from 'src/app/services/users-record.service';
-import { UserRecord } from 'src/app/interfaces/user-record';
+import { UsersRecordService } from '../../../../services';
+import { UserRecord } from '../../../../interfaces';
 
 @Component({
   selector: 'app-remove-record',

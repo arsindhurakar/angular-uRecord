@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { passwordValidator } from '../../utils/password.validator';
-import { UserService } from 'src/app/services/user.service';
+import { passwordValidator, customInputValidator } from '../../utils';
+import { UserService } from '../../services';
 
 @Component({
   selector: 'app-registration',
@@ -14,22 +14,6 @@ export class RegistrationComponent implements OnInit {
   isSuccess: boolean;
   isProcessing: boolean = false;
 
-  get fullName() {
-    return this.registrationForm.get('fullName');
-  }
-
-  get email() {
-    return this.registrationForm.get('email');
-  }
-
-  get password() {
-    return this.registrationForm.get('password');
-  }
-
-  get confirmPassword() {
-    return this.registrationForm.get('confirmPassword');
-  }
-
   emailRegex: RegExp =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -41,7 +25,15 @@ export class RegistrationComponent implements OnInit {
   ngOnInit(): void {
     this.registrationForm = this._formBuilder.group(
       {
-        fullName: [null, Validators.required],
+        fullName: [
+          null,
+          [
+            Validators.required,
+            Validators.minLength(2),
+            Validators.pattern(/^[A-Za-z]{2,}$/),
+            customInputValidator(/\badmin\b/),
+          ],
+        ],
         email: [
           null,
           [Validators.required, Validators.pattern(this.emailRegex)],
@@ -54,7 +46,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   handleRegistration(): void {
-    // console.log(this.registrationForm.value);
     this.serverErrorMessage = null;
     this.isProcessing = true;
 

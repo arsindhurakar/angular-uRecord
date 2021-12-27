@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { UserRecord } from 'src/app/interfaces/user-record';
-import { UsersRecordService } from 'src/app/services/users-record.service';
-import { SharedFormService } from 'src/app/services/shared-form.service';
+import { UserRecord } from '../../../../interfaces';
+import { UsersRecordService, SharedFormService } from '../../../../services';
 
 @Component({
   selector: 'app-edit-record',
@@ -15,10 +14,6 @@ export class EditRecordComponent implements OnInit {
   formEditRecord: FormGroup;
   isProcessing: boolean;
 
-  get sharedGroup() {
-    return this.formEditRecord.get('sharedGroup');
-  }
-
   constructor(
     public modalRef: MdbModalRef<EditRecordComponent>,
     private _formBuilder: FormBuilder,
@@ -29,7 +24,7 @@ export class EditRecordComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sharedGroup.patchValue(this.record);
+    this.formEditRecord.get('sharedGroup').patchValue(this.record);
   }
 
   setForm() {
@@ -42,11 +37,11 @@ export class EditRecordComponent implements OnInit {
     this.isProcessing = true;
     if (!this.formEditRecord.invalid) {
       this._usersRecordService
-        .updateUserRecord(this.sharedGroup.value)
+        .updateUserRecord(this.formEditRecord.get('sharedGroup').value)
         .subscribe(
           (res) => {
             if (res.success === true) {
-              this.modalRef.close(this.sharedGroup.value);
+              this.modalRef.close(this.formEditRecord.get('sharedGroup').value);
             } else {
               this.modalRef.close();
             }

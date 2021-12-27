@@ -8,7 +8,7 @@ export const RouteSecure: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'users-record',
+    path: 'users',
     component: UsersRecordComponent,
   },
 ];

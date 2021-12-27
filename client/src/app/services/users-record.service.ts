@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-} from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 import { UserRecord } from '../interfaces/user-record';
@@ -19,44 +14,32 @@ export class UsersRecordService {
   constructor(private _http: HttpClient) {}
 
   addUserRecord(userRecord: UserRecord): Observable<UserRecord> {
-    return this._http
-      .post<UserRecord>(
-        environment.apiBaseUrl + '/add-record',
-        userRecord,
-        this.noAuthHeader
-      )
-      .pipe(catchError(this.errorHandler));
+    return this._http.post<UserRecord>(
+      environment.apiBaseUrl + '/add-record',
+      userRecord,
+      this.noAuthHeader
+    );
   }
 
   getUsersRecord(): Observable<UserRecord> {
-    return this._http
-      .get<UserRecord>(
-        environment.apiBaseUrl + '/get-records',
-        this.noAuthHeader
-      )
-      .pipe(catchError(this.errorHandler));
+    return this._http.get<UserRecord>(
+      environment.apiBaseUrl + '/get-records',
+      this.noAuthHeader
+    );
   }
 
   removeUserRecord(id: string): Observable<UserRecord> {
-    return this._http
-      .delete<UserRecord>(
-        environment.apiBaseUrl + '/remove-record/' + id, //id sent as params
-        this.noAuthHeader
-      )
-      .pipe(catchError(this.errorHandler));
+    return this._http.delete<UserRecord>(
+      environment.apiBaseUrl + '/remove-record/' + id, //id sent as params
+      this.noAuthHeader
+    );
   }
 
   updateUserRecord(updates: UserRecord): Observable<UserRecord> {
-    return this._http
-      .put<UserRecord>(
-        environment.apiBaseUrl + '/update-record',
-        updates,
-        this.noAuthHeader
-      )
-      .pipe(catchError(this.errorHandler));
-  }
-
-  errorHandler(error: HttpErrorResponse) {
-    return throwError(error);
+    return this._http.put<UserRecord>(
+      environment.apiBaseUrl + '/update-record',
+      updates,
+      this.noAuthHeader
+    );
   }
 }

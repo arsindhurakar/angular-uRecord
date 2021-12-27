@@ -1,13 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
-export class TableComponent implements OnInit {
-  @Input() headElements: string[];
-  @Input() keyElements: string[];
+export class TableComponent {
+  @Input() elements: object[];
   @Input() records: object[];
   @Input() isActions: boolean;
   @Input() searchTerm: string;
@@ -16,8 +15,7 @@ export class TableComponent implements OnInit {
   @Output() onRemove: EventEmitter<void> = new EventEmitter();
 
   pageCount: number = 1;
+  itemsPerPage: number = 5;
 
   constructor() {}
-
-  ngOnInit(): void {}
 }

@@ -1,28 +1,35 @@
 <div [formGroup]="parentGroup">
   <div formGroupName="sharedGroup">
     <!--Name-->
-    <app-input [label]="'Name'" [control]="name"></app-input>
+    <app-input [label]="'Name'" [control]="sharedGroup.get('name')"></app-input>
     <!--Name-->
 
     <!--Contact No.-->
     <app-input
       [label]="'Contact No'"
-      [control]="contactNo"
-      [type]="'number'"
+      [control]="sharedGroup.get('contactNo')"
+      [type]="'text'"
+      [mask]="'(0000) 000 000'"
     ></app-input>
     <!--Contact No.-->
 
     <!--Address-->
     <div formGroupName="address">
-      <app-input [label]="'Street'" [control]="street"></app-input>
-      <app-input [label]="'City'" [control]="city"></app-input>
+      <app-input
+        [label]="'Street'"
+        [control]="sharedGroup.get('address')['controls']['street']"
+      ></app-input>
+      <app-input
+        [label]="'City'"
+        [control]="sharedGroup.get('address')['controls']['city']"
+      ></app-input>
     </div>
     <!--Address-->
 
     <!--Email-->
     <app-input
       [label]="'Email'"
-      [control]="email"
+      [control]="sharedGroup.get('email')"
       [isReadOnly]="isReadOnly"
     ></app-input>
     <!--Email-->

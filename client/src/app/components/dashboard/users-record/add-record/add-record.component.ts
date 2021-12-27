@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
-
-import { SharedFormService } from 'src/app/services/shared-form.service';
-import { UsersRecordService } from 'src/app/services/users-record.service';
+import { SharedFormService, UsersRecordService } from '../../../../services';
 
 @Component({
   selector: 'app-add-record',
@@ -18,10 +16,6 @@ export class AddRecordComponent implements OnInit {
 
   emailRegex: RegExp =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-  get sharedGroup() {
-    return this.formAddRecord.get('sharedGroup');
-  }
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -55,20 +49,21 @@ export class AddRecordComponent implements OnInit {
   onAddRecord() {
     this.isProcessing = true;
     if (!this.formAddRecord.invalid) {
-      this._usersRecordService.addUserRecord(this.sharedGroup.value).subscribe(
-        (res) => {
-          this.modalRef.close(res);
-        },
-        (err) => {
-          if (err.status === 422) {
-            this._toastr.error(err.error[0]);
-            this.isProcessing = false;
+      this._usersRecordService
+        .addUserRecord(this.formAddRecord.get('sharedGroup').value)
+        .subscribe(
+          (res) => {
+            this.modalRef.close(res);
+          },
+          (err) => {
+            if (err.status === 422) {
+              this._toastr.error(err.error[0]);
+              this.isProcessing = false;
+            }
           }
-        }
-      );
+        );
     } else {
       this.isProcessing = false;
-      this._toastr.error('Invalid details');
     }
   }
 }

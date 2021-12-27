@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { customInputValidator } from '../utils/user-form.validator';
+import { customInputValidator } from '../utils';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +18,7 @@ export class SharedFormService {
         null,
         [
           Validators.required,
-          Validators.minLength(2),
+          Validators.pattern(/^[A-Za-z]{2,}$/),
           customInputValidator(/\badmin\b/), //particular string
         ],
       ],

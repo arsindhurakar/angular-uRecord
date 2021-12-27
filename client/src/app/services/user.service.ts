@@ -6,8 +6,7 @@ import {
 } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
-import { catchError } from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { User } from '../interfaces/user';
 
@@ -20,25 +19,23 @@ export class UserService {
   constructor(private _http: HttpClient) {}
 
   register(user: User): Observable<User> {
-    return this._http
-      .post<User>(environment.apiBaseUrl + '/register', user, this.noAuthHeader)
-      .pipe(catchError(this.errorHandler));
+    return this._http.post<User>(
+      environment.apiBaseUrl + '/register',
+      user,
+      this.noAuthHeader
+    );
   }
 
   login(authCredentials: User): Observable<User> {
-    return this._http
-      .post<User>(
-        environment.apiBaseUrl + '/authenticate',
-        authCredentials,
-        this.noAuthHeader
-      )
-      .pipe(catchError(this.errorHandler));
+    return this._http.post<User>(
+      environment.apiBaseUrl + '/authenticate',
+      authCredentials,
+      this.noAuthHeader
+    );
   }
 
   getUserProfile(): Observable<User> {
-    return this._http
-      .get<User>(environment.apiBaseUrl + '/')
-      .pipe(catchError(this.errorHandler));
+    return this._http.get<User>(environment.apiBaseUrl + '/');
   }
 
   setToken(token: string) {
@@ -66,9 +63,5 @@ export class UserService {
     if (userPayload) {
       return userPayload.exp > Date.now() / 1000;
     }
-  }
-
-  errorHandler(error: HttpErrorResponse) {
-    return throwError(error);
   }
 }

@@ -1,8 +1,9 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th *ngFor="let element of headElements">
-        {{ element.key }}
+      <th>#</th>
+      <th *ngFor="let element of elements">
+        {{ element.head }}
       </th>
     </tr>
   </thead>
@@ -12,15 +13,48 @@
       *ngFor="
         let record of records
           | searchFilter: searchTerm:['name']
-          | paginate: { itemsPerPage: 5, currentPage: pageCount };
+          | paginate: { itemsPerPage: itemsPerPage, currentPage: pageCount };
         index as i
       "
     >
-      <td>{{ i + 1 }}</td>
-      <td *ngFor="let element of keyElements">
-        <div *ngIf="element.type !== 'array'; else nestedKeyElements">
-          {{ record[element.key] }}
+      <td *ngIf="pageCount == 1">{{ i + 1 }}</td>
+      <td *ngIf="pageCount > 1">
+        {{ (pageCount - 1) * itemsPerPage + (i + 1) }}
+      </td>
+      <td *ngFor="let element of elements">
+        <!--Data-->
+        <div *ngIf="element.type !== 'group'; else nestedKeyElements">
+          <div *ngIf="element.key !== 'contactNo'; else contactNo">
+            {{ record[element.key] }}
+          </div>
+          <ng-template #contactNo>
+            {{ record[element.key] | mask: "(0000) 000 000" }}
+          </ng-template>
         </div>
+        <!--Data-->
+
+        <!--Icon-->
+        <i
+          *ngIf="element.type === 'subscription'"
+          [class]="element.icon"
+          [style.color]="record.isSubscribed ? '#00b74a' : '#C8C8C8'"
+        ></i>
+        <!--Icon-->
+
+        <!--Actions-->
+        <div *ngIf="element.type === 'actions'">
+          <i
+            class="fas fa-pen text-success me-4 icon-action"
+            (click)="onEdit.emit(record)"
+          ></i>
+          <i
+            class="fas fa-trash text-danger icon-action"
+            (click)="onRemove.emit(record)"
+          ></i>
+        </div>
+        <!--Actions-->
+
+        <!--Group-->
         <ng-template #nestedKeyElements>
           <td
             *ngFor="let nestedElement of element.nestedKeys; let isLast = last"
@@ -28,22 +62,7 @@
             {{ record[element.key][nestedElement.key] }}{{ isLast ? "" : ", " }}
           </td>
         </ng-template>
-      </td>
-      <td>
-        <i
-          class="fas fa-circle"
-          [style.color]="record.isSubscribed ? '#00b74a' : '#C8C8C8'"
-        ></i>
-      </td>
-      <td *ngIf="isActions">
-        <i
-          class="fas fa-pen text-success me-4 icon-action"
-          (click)="onEdit.emit(record)"
-        ></i>
-        <i
-          class="fas fa-trash text-danger icon-action"
-          (click)="onRemove.emit(record)"
-        ></i>
+        <!--Group-->
       </td>
     </tr>
   </tbody>

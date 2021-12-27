@@ -16,9 +16,15 @@ i.icon-action {
 //--links--
 a {
   display: inline-block !important;
+
   &:hover {
     cursor: pointer;
     text-decoration: underline;
   }
+}
+
+a:focus {
+  outline: none;
+  text-decoration: underline;
 }
 //--links--

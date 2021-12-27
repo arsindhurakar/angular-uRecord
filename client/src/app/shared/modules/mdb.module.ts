@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-// MDB Modules
 import { MdbAccordionModule } from 'mdb-angular-ui-kit/accordion';
 import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
 import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
@@ -39,4 +38,4 @@ import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
     MdbValidationModule,
   ],
 })
-export class SharedModule {}
+export class MdbModule {}

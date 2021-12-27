@@ -1,37 +1,43 @@
 <div class="h-100 d-flex flex-column align-items-center justify-content-center">
   <!--Message-->
-  <small *ngIf="serverErrorMessage" class="text-danger">{{
+  <small *ngIf="serverErrorMessage" class="text-danger err-msg">{{
     serverErrorMessage
   }}</small>
   <!--Message-->
 
-  <form class="w-25" [formGroup]="loginForm" (ngSubmit)="handleLogin()">
-    <!--Email-->
-    <app-input [label]="'Email'" [control]="email" [type]="'email'"></app-input>
-    <!--Email-->
+  <div class="login-container">
+    <form [formGroup]="loginForm" (ngSubmit)="handleLogin()">
+      <!--Email-->
+      <app-input
+        [label]="'Email'"
+        [control]="loginForm.get('email')"
+        [type]="'email'"
+      ></app-input>
+      <!--Email-->
 
-    <!--Password-->
-    <app-input
-      [label]="'Password'"
-      [control]="password"
-      [type]="'password'"
-    ></app-input>
-    <!--Password-->
+      <!--Password-->
+      <app-input
+        [label]="'Password'"
+        [control]="loginForm.get('password')"
+        [type]="'password'"
+        [isPasswordShow]="true"
+      ></app-input>
+      <!--Password-->
 
-    <div class="text-end d-flex flex-column">
-      <app-button
-        [type]="'submit'"
-        [class]="'btn btn-success'"
-        [value]="'Login'"
-        [isProcessing]="isProcessing"
-      ></app-button>
-      <div class="d-flex align-items-center justify-content-end mt-2">
-        <small>Not Registered?</small>
-        &nbsp;
-        <small class="text-success text-register" routerLink="/registration"
-          >REGISTER</small
-        >
+      <div class="text-end d-flex flex-column">
+        <app-button
+          [type]="'submit'"
+          [class]="'btn btn-success'"
+          [value]="'Login'"
+          [isProcessing]="isProcessing"
+          [isInvalid]="loginForm.invalid"
+        ></app-button>
+        <div class="d-flex align-items-center justify-content-end mt-2">
+          <small>Not Registered?</small>
+          &nbsp;
+          <a class="text-success" routerLink="/registration">REGISTER</a>
+        </div>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </div>

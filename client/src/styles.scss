@@ -8,8 +8,11 @@
 
 @import "~ngx-toastr/toastr";
 
+@import "./assets/scss/mixins.scss";
 @import "./assets/scss/default.scss";
 @import "./assets/scss/variables.scss";
-@import "./assets/scss/components/input.scss";
-@import "./assets/scss/components/hero.scss";
-@import "./assets//scss/components/table.scss";
+@import "./assets/scss/input.scss";
+@import "./assets/scss/hero.scss";
+@import "./assets//scss/table.scss";
+@import "./assets/scss/login.scss";
+@import "./assets/scss/registration.scss";

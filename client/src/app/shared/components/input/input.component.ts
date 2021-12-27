@@ -11,6 +11,16 @@ export class InputComponent {
   @Input() label: string;
   @Input() type: string;
   @Input() isReadOnly: boolean;
+  @Input() isPasswordShow: boolean;
+  @Input() mask: string;
 
   constructor() {}
+
+  togglePasswordVisibility() {
+    if (this.type === 'password') {
+      this.type = 'text';
+    } else {
+      this.type = 'password';
+    }
+  }
 }

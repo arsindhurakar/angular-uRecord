@@ -1,0 +1,15 @@
+.error-msg {
+  @include errorMessage;
+}
+
+.registration-container {
+  @include userCredentialsContainer;
+}
+
+.pw-no-match {
+  font-size: 0.8rem;
+}
+
+.success-msg {
+  @include successMessage;
+}

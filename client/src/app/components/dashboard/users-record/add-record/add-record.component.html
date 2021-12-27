@@ -12,7 +12,7 @@
     <form (ngSubmit)="onAddRecord()" id="newForm">
       <app-form
         [parentGroup]="formAddRecord"
-        [sharedGroup]="sharedGroup"
+        [sharedGroup]="formAddRecord.get('sharedGroup')"
       ></app-form>
 
       <div class="d-flex justify-content-end mt-3"></div>
@@ -31,6 +31,7 @@
       [value]="'Add Record'"
       [form]="'newForm'"
       [isProcessing]="isProcessing"
+      [isInvalid]="formAddRecord.invalid"
     ></app-button>
   </div>
 </div>

@@ -3,7 +3,7 @@
   [class]="class"
   [type]="type"
   [attr.form]="form"
-  [disabled]="isProcessing"
+  [disabled]="isProcessing || isInvalid"
   (click)="onClick.emit()"
 >
   {{ !isProcessing ? value : "Processing" }}
